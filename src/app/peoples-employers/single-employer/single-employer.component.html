@@ -1,0 +1,132 @@
+<div class="row">
+  <div class="col-md-12">
+     <span class="col-md-4 col-md-offset-4">
+          <img
+            [src]="this.employer.logoImgPath"
+            alt="Logo"
+            class="img-responsive">
+    </span>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h3>{{this.employer.name}} {{this.space}}
+          <button *ngIf="this.userService.hasRole('WORKER')"
+                  type="button"
+                  class="btn btn-info"
+                  data-toggle="collapse"
+                  data-target="#evaluation"
+          >Evaluate this employer</button>
+          {{this.space}}
+          <button *ngIf="this.userService.hasRole('WORKER')"
+                  type="button"
+                  class="btn"
+                  (click)="createFollowRelationship()"
+                  [disabled]="following"
+                  [ngClass]="{'btn-warning': !following}"
+          >{{!following ? 'Follow':'Following'}}</button>
+        </h3>
+        <h4>Based in: {{this.employer.location}}</h4>
+        <h4>Our branch is <strong>{{this.employer.branch}}</strong></h4>
+        <hr>
+        <h4>More info about us you can find here:  <strong>{{this.employer.siteLink}}</strong></h4>
+        <br>
+      </div>
+    </div>
+
+    <div *ngIf="successfullyEvaluated" class="col-md-8 col-md-offset-2 alert alert-success">
+      <p align="center"><strong>Successfully evaluated</strong></p>
+    </div>
+
+    <div id="evaluation" class="collapse">
+      <form (ngSubmit)="onSubmit()" #f="ngForm">
+        <div class="row">
+          <div class="col-lg-8 col-md-offset-2">
+            <div class="well">
+
+              <div class="form-group col-lg-12">
+                <label for="workerExperience">My Experience working for this employer</label>
+                <textarea
+                  name="workerExperience"
+                  id="workerExperience"
+                  cols="30"
+                  rows="2"
+                  class="form-control"
+                  ngModel
+                  required
+                ></textarea>
+              </div>
+
+              <div class="form-group col-lg-12">
+                <label for="recommendation">Recommendation</label>
+                <textarea
+                  name="recommendation"
+                  id="recommendation"
+                  cols="30"
+                  rows="2"
+                  class="form-control"
+                  ngModel
+                ></textarea>
+              </div>
+
+              <div class="form-group col-lg-6">
+                <label for="employerRate">Rate this employer</label>
+                <select class="form-control"
+                        id="employerRate"
+                        name="employerRate"
+                        ngModel
+                        required>
+
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+
+                </select>
+              </div>
+
+              <div class="checkbox col-lg-offset-4">
+                <label>
+                  <input
+                    type="checkbox"
+                    name="stillWorkingForThisEmployer"
+                    ngModel
+                    [value]="'stillWorkingForThisEmployer'"
+                  >
+                  I Still work here
+                </label>
+              </div>
+              <br><br>
+              <div class="col-lg-offset-2">
+                <button
+                  [disabled]="!this.userService.hasRole('WORKER') || !f.valid"
+                  class="btn btn-success"
+                  type="submit"
+                  data-toggle="collapse"
+                  data-target="#evaluation">Save Evaluation
+                </button>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+
+    <br>
+    <div *ngIf="evaluations !== null || evaluations === []" class="row">
+      <div class="col-md-10 col-md-offset-1">
+        <h5> Employers's Evaluations:</h5>
+        <br>
+        <div *ngFor="let evaluation of this.evaluations" class="panel panel-info">
+          <div class="panel-heading">{{evaluation.worker.firstName}} {{evaluation.worker.secondName}}</div>
+          <div class="panel-body">
+            <h4>{{evaluation.workerExperience}}</h4>
+            <h4>{{evaluation.recommendation}}</h4>
+            <h4>I rate this employer: {{evaluation.employerRate}}</h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

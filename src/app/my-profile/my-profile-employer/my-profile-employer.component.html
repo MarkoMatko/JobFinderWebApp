@@ -1,0 +1,66 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="cl-md-12 cl-lg-12 cl-xs-12">
+        <span class="col-md-4 col-md-offset-4">
+            <img
+              [src]="this.logedInEmployer.logoImgPath"
+              alt="Logo"
+              style="width:100px"
+              class="img-responsive">
+        </span>
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+            <h3>{{this.logedInEmployer.name}}</h3>
+            <h4>Based in: {{this.logedInEmployer.location}}</h4>
+            <h4>Our branch is <strong>{{this.logedInEmployer.branch}}</strong></h4>
+            <hr>
+            <h4>Our site link: <strong>{{this.logedInEmployer.siteLink}}</strong></h4>
+            <h5>{{this.logedInEmployer.description}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 pre-scrollable">
+      <h3>My Job Offers:</h3>
+      <div *ngFor="let joboffer of this.logedInEmployerjobOffers" class="well">
+        <div class="row">
+          <div class="col-md-12">
+            <a style="cursor: pointer;"
+               [routerLink]="[joboffer.id]"
+               routerLinkActive="active"
+               class="list-group-item clearfix">
+        <span class="col-md-4 col-md-offset-4">
+          <img
+            [src]="joboffer.imgPath"
+            alt="Logo"
+            class="img-responsive">
+        </span>
+              <div class="row">
+                <div class="col-md-8">
+                  <h3 class="list-group-item-heading">{{joboffer.jobDescription}}</h3>
+                  <h4 class="list-group-item-text"> {{joboffer.jobOfferRelationship.employer.name}}</h4>
+                  <h5 class="list-group-item-text">{{joboffer.jobOfferRelationship.employer.location}}</h5>
+                  <h5 class="list-group-item-text">publish: <strong>{{joboffer.jobOfferRelationship.publish}}</strong></h5>
+                  <h5 class="list-group-item-text">expire: <strong>{{joboffer.jobOfferRelationship.expired}}</strong></h5>
+                </div>
+              </div>
+            </a>
+          </div>
+
+        </div>
+        <br>
+      </div>
+
+    </div>
+
+    <div class="col-lg-4 pre-scrollable">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+
+</div>

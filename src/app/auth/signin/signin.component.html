@@ -1,0 +1,45 @@
+<div class="row">
+  <h2 class="col-lg-offset-3">Please Log in</h2>
+  <br>
+  <div class="col-xs-12 col-md-12 col-lg-12">
+    <form (ngSubmit)="onSubmit()" #f="ngForm" >
+      <fieldset>
+        <div class="row">
+          <div class="form-group col-lg-offset-3 col-lg-6">
+            <label for="email">Email *</label>
+            <input
+              type="text"
+              class="form-control"
+              id="email"
+              name="email"
+              required
+              ngModel
+              email
+              placeholder="Enter email"
+            >
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form-group col-lg-offset-3 col-lg-6">
+            <label for="password" >Password *</label>
+            <input
+              type="password"
+              class="form-control"
+              id="password"
+              name="password"
+              required
+              ngModel
+              placeholder="Enter password"
+            >
+          </div>
+        </div>
+
+        <p class="col-lg-offset-3" *ngIf="badCredentials">Wrong email or password</p>
+        <br>
+        <button [disabled]="!f.valid " class="btn btn-primary col-lg-offset-3" type="submit">Sign In</button>
+        <br>
+      </fieldset>
+    </form>
+  </div>
+</div>

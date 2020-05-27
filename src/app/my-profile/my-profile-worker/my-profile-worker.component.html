@@ -1,0 +1,113 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-4">
+      <div class="cl-md-12 cl-lg-12 cl-xs-12">
+        <span class="col-md-4 col-md-offset-4">
+            <img
+              [src]="'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'"
+              alt="Logo"
+              style="width:100px"
+              class="img-responsive">
+        </span>
+        <div class="row">
+          <div class="col-md-8 col-md-offset-2">
+            <h3>{{this.logedInWorker.firstName}} {{this.logedInWorker.secondName}}</h3>
+            <h4>
+              My branch is <strong>{{this.logedInWorker.branch}} </strong>,
+              and i have degree in <strong>{{this.logedInWorker.degree}}</strong>
+            </h4>
+            <hr>
+            <h4>You can check my CV here: <strong>{{this.logedInWorker.CVLink}}</strong></h4>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-lg-4 pre-scrollable">
+      <h3>My Applications:</h3>
+      <div *ngFor="let joboffer of this.applications" class="well">
+        <div class="row">
+          <div class="col-md-12">
+
+            <span class="col-md-4 col-md-offset-4">
+              <img
+                [src]="joboffer.imgPath"
+                alt="Logo"
+                class="img-responsive">
+            </span>
+            <div class="row">
+              <div class="col-md-8">
+                <h3 class="list-group-item-heading">{{joboffer.jobDescription}}</h3>
+                <h4 class="list-group-item-text"> {{joboffer.jobOfferRelationship.employer.name}} <button (click)="removeApplication(joboffer)" class="btn btn-danger pull-right">Remove</button></h4>
+                <h5 class="list-group-item-text">{{joboffer.jobOfferRelationship.employer.location}}</h5>
+                <h5 class="list-group-item-text">expire: {{joboffer.jobOfferRelationship.expired}}</h5>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <br>
+      </div>
+
+
+
+    </div>
+
+    <div class="col-lg-4 pre-scrollable">
+      <h4>My Friends and Followed Employers:</h4>
+      <hr>
+      <div *ngFor="let result of this.friendsAndFollowed">
+
+        <div *ngIf="this.peoplesEmployersService.typeOfWorker(result)" class="media">
+          <div class="media-left">
+            <img
+              [src]="'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'"
+              alt="Logo"
+              class="media-object"
+              style="width:60px">
+            <br>
+
+          </div>
+
+          <div class="media-body">
+            <h4 class="media-heading">{{result.firstName}} {{result.secondName}} - Worker</h4>
+            <h5 class="list-group-item-text"> branch: {{result.branch}}</h5>
+            <p> degree: {{result.degree}}</p>
+            <button #unfriend (click)="unFriendWorker(result, unfriend)" class="btn btn-danger col-lg-offset-3">
+              {{unfriend.disabled?'Unfriended':'Unfriend'}}
+            </button>
+          </div>
+
+        </div>
+
+        <div *ngIf="!this.peoplesEmployersService.typeOfWorker(result)" class="media">
+          <div class="media-left">
+            <img
+              [src]="result.logoImgPath"
+              alt="Logo"
+              class="media-object"
+              style="width:60px">
+
+          </div>
+
+          <div class="media-body">
+            <h4 class="media-heading">{{result.name}} - Employer, branch: {{result.branch}}</h4>
+            <p> {{result.description}}</p>
+            <button  #unfollow (click)="unfollowEmployer(result, unfollow)" class="btn btn-danger col-lg-offset-3">
+              {{unfollow.disabled?'Unfollowed':'Unfollow'}}
+            </button>
+          </div>
+
+        </div>
+        <br>
+        <hr>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<div class="row">
+
+</div>

@@ -1,0 +1,19 @@
+<div class="row">
+  <div class="col-md-12 col-lg-12">
+    <h4> Applications:</h4>
+    <br>
+    <div *ngFor="let application of this.applications" class="panel panel-info">
+      <div class="panel-heading">
+        <h4 class="pull-left">{{application.worker.firstName}}  {{application.worker.secondName}}</h4>
+        <h4 class="pull-right">{{application.appliedDateAndTime}}</h4>
+        <div class="clearfix"></div>
+      </div>
+      <div class="panel-body">
+        <h4>degree: <strong>{{application.worker.degree}}({{application.worker.branch}})</strong> </h4>
+        <h4>link to CV: {{application.worker.CVLink}}</h4>
+        <h4>You can contact this applier on email: <strong>{{application.worker.credentials.email}}</strong></h4>
+      </div>
+      <br>
+    </div>
+  </div>
+</div>

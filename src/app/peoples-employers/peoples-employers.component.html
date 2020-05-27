@@ -1,0 +1,73 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 pre-scrollable">
+
+      <div class="input-group">
+        <input [(ngModel)]="search"
+               type="text"
+               class="form-control"
+               placeholder="Search for workers and employers">
+        <div class="input-group-btn">
+          <button (click)="onSearch()" class="btn btn-default">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+      </div>
+      <br>
+      <div *ngFor="let result of this.searchedResult">
+
+        <a *ngIf="this.peoplesEmployersService.typeOfWorker(result)" style="cursor: pointer;"
+           [routerLink]="'worker/' + result.id"
+           routerLinkActive="active"
+           class="list-group-item clearfix">
+
+          <div class="media">
+            <div class="media-left">
+              <img
+                [src]="'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'"
+                alt="Logo"
+                class="media-object"
+                style="width:60px">
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading">{{result.firstName}} {{result.secondName}} - Worker</h4>
+              <h5 class="list-group-item-text"> branch: {{result.branch}}</h5>
+              <h5 class="list-group-item-text"> degree: {{result.degree}}</h5>
+            </div>
+
+          </div>
+
+        </a>
+
+        <a *ngIf="!this.peoplesEmployersService.typeOfWorker(result)" style="cursor: pointer;"
+           [routerLink]="'employer/' + result.id"
+           routerLinkActive="active"
+           class="list-group-item clearfix">
+
+          <div class="media">
+            <div class="media-left">
+              <img
+                [src]="result.logoImgPath"
+                alt="Logo"
+                class="media-object"
+                style="width:60px">
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading">{{result.name}} - Employer, branch: {{result.branch}}</h4>
+              <p> {{result.description}}</p>
+            </div>
+
+          </div>
+
+        </a>
+        <br>
+      </div>
+
+    </div>
+    <div class="col-md-7 pre-scrollable">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+

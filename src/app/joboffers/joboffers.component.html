@@ -1,0 +1,25 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-5 pre-scrollable">
+      <div class="input-group">
+        <input [(ngModel)]="search"
+               type="text"
+               class="form-control"
+               placeholder="Filter by Job Offer name or Employer name or location">
+        <div class="input-group-btn">
+          <button (click)="onSearch()" class="btn btn-default">
+            <i class="glyphicon glyphicon-search"></i>
+          </button>
+        </div>
+      </div>
+      <br>
+      <app-joboffer-item
+        *ngFor="let jobOffer of this.filteredJobOffers"
+        [jobOffer]="jobOffer"></app-joboffer-item>
+    </div>
+    <div class="col-md-7 pre-scrollable">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>
+

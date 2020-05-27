@@ -1,0 +1,287 @@
+<form (ngSubmit)="onSubmit()" #f="ngForm" >
+<div class="row">
+  <div class="col-lg-5">
+
+    <div class="row">
+      <h2 class="col-lg-offset-3">Please Sign up</h2>
+      <br>
+      <div class="col-xs-12 col-md-12 col-lg-12">
+
+          <fieldset>
+            <div class="row">
+              <div class="form-group col-lg-offset-3 col-lg-6">
+                <label for="email">Email *</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="email"
+                  name="email"
+                  required
+                  ngModel
+                  email
+                >
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-lg-offset-3 col-lg-6">
+                <label for="username">Username *</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="username"
+                  name="username"
+                  required
+                  ngModel
+                >
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-lg-offset-3 col-lg-6">
+                <label for="password">Password *</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="password"
+                  name="password"
+                  required
+                  ngModel
+                >
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="form-group col-lg-offset-3 col-lg-6">
+                <label for="confirmPassword">Confirm Password *</label>
+                <input
+                  type="password"
+                  class="form-control"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  required
+                  ngModel
+                >
+              </div>
+            </div>
+
+            <div class="radio col-lg-offset-3">
+              <label>
+                <input
+                  type="radio"
+                  name="typeOfUser"
+                  ngModel
+                  [value]="'worker'"
+                  (click)="workerSelected()"
+                >
+                Worker
+              </label>
+            </div>
+
+            <div class="radio col-lg-offset-3">
+              <label>
+                <input
+                  type="radio"
+                  name="typeOfUser"
+                  ngModel
+                  [value]="'employer'"
+                  (click)="employerSelected()"
+                >
+                Employer
+              </label>
+            </div>
+            <hr>
+
+            <br>
+            <button
+              [disabled]="(!f.valid ||
+              (!workerSelect && !employerSelect) ||
+              (f.touched && f.controls.password.value !== f.controls.confirmPassword.value)) ||
+              (workerSelect && !f.controls.workerData.valid) ||
+              (employerSelect && !f.controls.employerData.valid)"
+              class="btn btn-primary col-lg-offset-3" type="submit">Sign up
+            </button>
+            <br>
+          </fieldset>
+
+      </div>
+    </div>
+
+  </div>
+  <div class="col-lg-7">
+
+    <div
+      id="worker-data"
+      *ngIf="workerSelect"
+      ngModelGroup="workerData"
+    >
+
+      <div class="row">
+        <h4 class="col-lg-offset-3">Enter your personal info</h4>
+        <br>
+        <br>
+        <div class="form-group col-lg-offset-3 col-lg-6">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name"
+            name="name"
+            required
+            ngModel
+          >
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-offset-3 col-lg-6">
+          <label for="surname">Surname</label>
+          <input
+            type="text"
+            class="form-control"
+            id="surname"
+            name="surname"
+            required
+            ngModel
+          >
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-offset-3 col-lg-6">
+          <label for="degree">Degree</label>
+          <input
+            type="text"
+            class="form-control"
+            id="degree"
+            name="degree"
+            required
+            ngModel
+          >
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-offset-3 col-lg-6">
+          <label for="CVLink">CV Link</label>
+          <input
+            type="text"
+            class="form-control"
+            id="CVLink"
+            name="CVLink"
+            required
+            ngModel
+          >
+        </div>
+      </div>
+
+      <div class="form-group col-lg-offset-3 col-lg-6">
+        <label for="branch">Your branch:</label>
+        <select class="form-control"
+                id="branch"
+                name="branch"
+                ngModel>
+
+          <option>IT</option>
+          <option>MECHANICAL ENGINEERING</option>
+          <option>TRADES</option>
+          <option>TELECOMMUNICATIONS</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div id="employer-data" *ngIf="employerSelect" ngModelGroup="employerData">
+
+      <div class="row">
+        <h4 class="col-lg-offset-3">Your information</h4>
+        <br>
+        <br>
+        <div class="form-group col-lg-offset-3 col-lg-6">
+          <label for="name1">Name *</label>
+          <input
+            type="text"
+            class="form-control"
+            id="name1"
+            name="name1"
+            required
+            ngModel
+          >
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-offset-3 col-lg-6">
+          <label for="location">Location *</label>
+          <input
+            type="text"
+            class="form-control"
+            id="location"
+            name="location"
+            required
+            ngModel
+          >
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-offset-3 col-lg-6">
+          <label for="siteLink">Site Link</label>
+          <input
+            type="text"
+            class="form-control"
+            id="siteLink"
+            name="siteLink"
+            ngModel
+          >
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="form-group col-lg-offset-3 col-lg-6">
+          <label for="logoImgPath">Logo Img Path</label>
+          <input
+            type="text"
+            class="form-control"
+            id="logoImgPath"
+            name="logoImgPath"
+            ngModel
+          >
+        </div>
+      </div>
+
+      <div class="form-group col-lg-offset-3 col-lg-6">
+        <label for="description">Description</label>
+        <textarea
+          name="description"
+          id="description"
+          cols="30"
+          rows="1"
+          class="form-control"
+          ngModel
+        ></textarea>
+      </div>
+
+      <div class="form-group col-lg-offset-3 col-lg-6">
+        <label for="branch1">Your branch *</label>
+        <select
+          class="form-control"
+          id="branch1"
+          name="branch1"
+          ngModel
+          required
+        >
+          <option>IT</option>
+          <option>MECHANICAL ENGINEERING</option>
+          <option>TRADES</option>
+          <option>TELECOMMUNICATIONS</option>
+        </select>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+</form>
+
+

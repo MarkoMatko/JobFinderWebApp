@@ -1,0 +1,93 @@
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" [routerLink]="this.userService.hasRole('WORKER')?'/joboffers':'/my-profile-employer'" routerLinkActive="active">Job Finder</a>
+    </div>
+
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li *ngIf="this.userService.hasRole('WORKER')" routerLinkActive="active">
+          <a routerLink="/joboffers">Jobs</a>
+        </li>
+        <li *ngIf="this.userService.hasRole('WORKER') || this.userService.hasRole('EMPLOYER')" routerLinkActive="active">
+          <a routerLink="/peoples-employers">Peoples and Employers</a>
+        </li>
+        <li *ngIf="this.userService.hasRole('EMPLOYER')" routerLinkActive="active">
+          <a routerLink="my-profile-employer">My Profile</a>
+        </li>
+        <li *ngIf="this.userService.hasRole('WORKER')" routerLinkActive="active">
+          <a routerLink="my-profile-worker">My Profile</a>
+        </li>
+        <li *ngIf="this.userService.hasRole('EMPLOYER')" routerLinkActive="active">
+          <a routerLink="/add-new-joboffer">Add new Job Offer</a>
+        </li>
+        <!--        <li *ngIf="this.userService.hasRole('WORKER')" routerLinkActive="active">-->
+        <!--          <a routerLink="/notification"><span class="glyphicon glyphicon-bell"></span>Notifications</a>-->
+        <!--        </li>-->
+
+        <li *ngIf="this.userService.hasRole('WORKER')" class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" (click)="onNotifications()"><span class="glyphicon glyphicon-bell"></span>Notifications
+            <span class="caret"></span></a>
+          <ul class="dropdown-menu pre-scrollable">
+
+            <p>New</p>
+            <li *ngFor="let jobOffer of this.newNotifications" routerLinkActive="active" class="bg-success">
+              <a (click)="markAsSeen(jobOffer)" routerLink="/joboffers/{{jobOffer.id}}">
+                <div class="media">
+                  <div class="media-left">
+                    <img [src]="jobOffer.imgPath" class="media-object" style="width:60px">
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading">{{jobOffer.jobDescription}}</h4>
+                    <h5>employer: <strong>{{jobOffer.jobOfferRelationship.employer.name}}</strong>
+                      located in: <strong>{{jobOffer.jobOfferRelationship.employer.location}}</strong></h5>
+                    <p>publish: <strong>{{jobOffer.jobOfferRelationship.publish}}</strong> expired: <strong>{{jobOffer.jobOfferRelationship.expired}}</strong></p>
+                  </div>
+                </div>
+              </a>
+              <hr>
+            </li>
+
+            <hr>
+            <p>Seen</p>
+            <li *ngFor="let jobOffer1 of this.alreadySeenNotifications" routerLinkActive="active">
+              <a routerLink="/joboffers/{{jobOffer1.id}}">
+                <div class="media">
+                  <div class="media-left">
+                    <img [src]="jobOffer1.imgPath" class="media-object" style="width:60px">
+                  </div>
+                  <div class="media-body">
+                    <h4 class="media-heading">{{jobOffer1.jobDescription}}</h4>
+                    <h5>employer: <strong>{{jobOffer1.jobOfferRelationship.employer.name}}</strong>
+                      located in: <strong>{{jobOffer1.jobOfferRelationship.employer.location}}</strong></h5>
+                    <p>publish: <strong>{{jobOffer1.jobOfferRelationship.publish}}</strong> expired: <strong>{{jobOffer1.jobOfferRelationship.expired}}</strong></p>
+
+                  </div>
+                </div>
+              </a>
+              <hr>
+            </li>
+
+          </ul>
+        </li>
+
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li *ngIf="tokenStorage.getToken() === null"><a routerLink="/signup"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+        <li *ngIf="tokenStorage.getToken() === null"><a routerLink="/signin"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+
+      <ul *ngIf="tokenStorage.getToken() !== null" class="nav navbar-nav navbar-right">
+        <p class="navbar-text">{{this.userService.getLogedInUserInfo().username}}</p>
+        <li ><a (click)="signOut();" ><span class="glyphicon glyphicon-log-out"></span> Logout</a></li>
+      </ul>
+
+    </div>
+  </div>
+</nav>

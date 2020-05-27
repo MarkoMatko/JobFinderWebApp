@@ -1,0 +1,76 @@
+<div class="row">
+  <div class="col-md-12">
+    <span class="col-md-4 col-md-offset-4">
+          <img
+            [src]="jobOffer.imgPath"
+            alt="Logo"
+            class="img-responsive">
+    </span>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h3>{{jobOffer.jobDescription}} located in: {{jobOffer.jobOfferRelationship.employer.location}}</h3>
+        <hr>
+        <br>
+        <h4>We are looking for: {{jobOffer.jobDescription}}</h4>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h5> Your Responsibility:</h5>
+        <ul>
+          <li *ngFor="let jobResp of jobOffer.jobResponsibilities"> {{jobResp}}</li>
+        </ul>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h5 class="list-group-item-heading">Requirements needed for this job:</h5>
+        <ul>
+          <li *ngFor="let jobExp of jobOffer.experienceRequired"> {{jobExp}}</li>
+        </ul>
+      </div>
+    </div>
+    <br>
+    <br>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+        <h5 class="list-group-item-heading">What we give in return:</h5>
+        <ul>
+          <li *ngFor="let jobOf of jobOffer.offer"> {{jobOf}}</li>
+        </ul>
+      </div>
+    </div>
+    <br>
+    <div class="row">
+      <div class="col-md-6 col-md-offset-4">
+        <p class="font-weight-bold"><strong>Deadline for applications:</strong> {{jobOffer.jobOfferRelationship.expired}}</p>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2">
+
+        <button
+          [disabled]="alreadyApplied"
+          [ngClass]="{'btn-success': alreadyApplied}"
+          (click)="applyForJob()"
+          class="btn btn-primary col-lg-offset-5" >
+          {{!alreadyApplied ? 'Apply here' : 'You applied already'}}
+        </button>
+        <hr>
+
+        <div *ngIf="unSuccessfullyApplied" class="col-md-8 col-md-offset-2 alert alert-danger">
+          <p >Something went wrong, we didn't apply you. Try again later</p>
+        </div>
+        <div *ngIf="successfullyApplied" class="col-md-8 col-md-offset-2 alert alert-success">
+          <p class="col-md-8 col-md-offset-2">Successfully applied</p>
+        </div>
+
+
+      </div>
+    </div>
+  </div>
+
+</div>
