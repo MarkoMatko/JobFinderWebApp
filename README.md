@@ -3,7 +3,8 @@
 This project is my client side implementation of base functionalities for Job Finder App, I am using REST api from Job Finder Server Side api. Mora about that you can find in this repo https://github.com/MarkoMatko/JobFinderApp.
 
 I provide video with end to end walk through this client side Job Finder app.
---video--
+[![Job Finder Web App walk-through](https://img.youtube.com/vi/tDRRQzj2H34/0.jpg)](https://www.youtube.com/watch?v=tDRRQzj2H34&feature=youtu.be)
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.12.
 
