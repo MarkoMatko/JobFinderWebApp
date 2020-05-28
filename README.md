@@ -9,5 +9,5 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ## How to run this app
 First, you will have to set up and run server side app and data base. To do that, check the instructions from README.md file from repo:  https://github.com/MarkoMatko/JobFinderApp.
-Next, you need to fork and clone this repo to your local machine. This app has been implemented in Angular8, so you will need to download Angular CLI. If your Angular CLI is working, you will need to navigate to jobfinder-webapp folder and run ng serve command. If everything is builded ok, you can open new tab in your browser with address: http://localhost:4200/, and the app will start.
+Next, you need to fork and clone this repo to your local machine. This app has been implemented in Angular8, so you will need to download Angular CLI. If your Angular CLI is working, you will need to navigate to jobfinder-webapp folder and run ng serve command. If everything is built ok, you can open new tab in your browser with the address: http://localhost:4200/, and the app will start.
 More about using this app you can check in video attached in this file.
