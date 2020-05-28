@@ -1,27 +1,13 @@
-# JobfinderWebapp
+# Job Finder App - Client Side Web app
+
+This project is my client side implementation of base functionalities for Job Finder App, I am using REST api from Job Finder Server Side api. Mora about that you can find in this repo https://github.com/MarkoMatko/JobFinderApp.
+
+I provide video with end to end walk trought this client side Job Finder app.
+--video--
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 8.3.12.
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+## How to run this app
+First, you will have to set up and run server side app and data base. To do that, check the instructions from README.md file from repo:  https://github.com/MarkoMatko/JobFinderApp.
+Next, you need to fork and clone this repo to your local machine. This app has been implemented in Angular8, so you will need to download Angular CLI. If your Angular CLI is working, you will need to navigate to jobfinder-webapp folder and run ng serve command. If everything is builded ok, you can open new tab in your browser with address: http://localhost:4200/, and the app will start.
+More about using this app you can check in video attached in this file.
